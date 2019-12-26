@@ -16,8 +16,8 @@ router.get("/", auth, async (req, res) => {
       date: -1
     });
     res.json(contacts);
-  } catch (err) {
-    console.error(err.message);
+  } catch (error) {
+    console.error(error.message);
     res.status(500).send("Server Error");
   }
 });
@@ -62,16 +62,49 @@ router.post(
 // @desc Update contacts
 //@access Private
 
-router.put("/:id", (req, res) => {
-  res.send("Update contact");
+// router.put("/:id", (req, res) => {
+//   res.send("Update contact");
+// });
+router.put('/:id', (req, res, next) => {
+  const id = req.params._id;
+  
+  Contact.updateOne({_id: id})
+	.exec()
+	.then(result => {
+		res.status(200).json({
+      message: 'Contact updated'
+    });
+	})
+	.catch(err => {
+      	console.log(err);
+      	res.status(500).json({
+      		error: err
+      	});
+      	});
 });
 
 // @route DELETE api/contacts/:id
 // @desc  DELETE contact
 //@access Private
 
-router.delete("/:id", (req, res) => {
-  res.send("Delete contact");
-});
+
+  router.delete('/:id', (req, res, next) => {	
+    Contact.deleteOne({_id: req.params.id})
+    .exec()
+    .then(result => {
+      res.status(200).json({
+        message: 'Contact deleted'
+      });
+    })
+    .catch(err => {
+          console.log(err);
+          res.status(500).json({
+            error: err
+          });
+        }); //catch
+    
+  
+  
+  });
 
 module.exports = router;
