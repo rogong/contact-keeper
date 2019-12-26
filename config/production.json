@@ -1,0 +1,5 @@
+{
+    "mongoURI": "mongodb+srv://rogong:Wizard4life#@cluster0-w5ipg.mongodb.net/test?retryWrites=true&w=majority",
+    "jwtSecret": "the secret"
+  }
+  
