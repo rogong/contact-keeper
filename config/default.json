@@ -1,5 +1,5 @@
 
 {
-  "mongoURI": "mongodb+srv://brad123:brad123@contactkeeper-hvjuz.mongodb.net/test?retryWrites=true",
+  "mongoURI": "mongodb://127.0.0.1:27017/?gssapiServiceName=mongodb",
   "jwtSecret": "the secret"
 }
